@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Data Webpage</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <!-- The onerror attribute is added as a fallback in case PowerIcon.png isn't available yet -->
+            <img src="images/PowerIcon.png" alt="Power Icon" class="logo" onerror="this.src='https://via.placeholder.com/50?text=⚡';">
+            <h1>Energy Data Webpage</h1>
+        </div>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <h2>Welcome to the Energy Data Dashboard</h2>
+            <p>This webpage is designed to showcase energy consumption data. In the upcoming exercises, we will integrate interactive data visualisations here using D3.js to explore trends, energy efficiency, and power consumption metrics.</p>
+        </section>
+
+        <section class="data-visualization">
+            <h2>Data Insights</h2>
+            <div id="visualization-container" class="vis-placeholder">
+                <p>Data visualisation will appear here...</p>
+                <button id="load-data-btn">Test Interaction</button>
+            </div>
+            <div id="data-output"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 COS30045 Data Visualisation. Exercise 0.2.</p>
+    </footer>
+
+    <!-- Load custom scripts at the end of the body to ensure the DOM is loaded -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
