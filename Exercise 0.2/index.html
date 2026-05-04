@@ -3,39 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Data Webpage</title>
+    <title>Energy Australia - Home</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-container">
-            <!-- The onerror attribute is added as a fallback in case PowerIcon.png isn't available yet -->
-            <img src="images/PowerIcon.png" alt="Power Icon" class="logo" onerror="this.src='https://via.placeholder.com/50?text=⚡';">
-            <h1>Energy Data Webpage</h1>
+            <a href="index.html" class="logo-link" title="Return to Home">
+                <img src="images/PowerIcon.png" alt="Power Icon" class="logo" onerror="this.src='https://via.placeholder.com/50?text=⚡';">
+            </a>
+            <h1>Energy Australia</h1>
+            
+            <nav class="top-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="televisions.html" class="nav-link" data-page="televisions">Televisions</a></li>
+                    <li><a href="about.html" class="nav-link" data-page="about">About Us</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     
     <main>
-        <section class="intro">
-            <h2>Welcome to the Energy Data Dashboard</h2>
-            <p>This webpage is designed to showcase energy consumption data. In the upcoming exercises, we will integrate interactive data visualisations here using D3.js to explore trends, energy efficiency, and power consumption metrics.</p>
+        <section class="hero">
+            <h2>Welcome to Energy Australia</h2>
+            <p>Your trusted source for information about appliance energy consumption in the Australian market.</p>
         </section>
 
-        <section class="data-visualization">
-            <h2>Data Insights</h2>
-            <div id="visualization-container" class="vis-placeholder">
-                <p>Data visualisation will appear here...</p>
-                <button id="load-data-btn">Test Interaction</button>
+        <section class="content">
+            <h2>Understanding Energy Consumption</h2>
+            <p>Energy consumption by household appliances is a crucial factor in both environmental sustainability and household budgets. In Australia, the average household spends a significant portion of their electricity bill on major appliances.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📺 Televisions</h3>
+                    <p>Modern televisions have become more energy-efficient over the years. Learn about screen technologies and power ratings on our Televisions page.</p>
+                </div>
+                <div class="info-card">
+                    <h3>♻️ Sustainability</h3>
+                    <p>Understanding energy consumption helps us make better choices for the environment. Every kilowatt saved makes a difference.</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Cost Savings</h3>
+                    <p>Choosing energy-efficient appliances can significantly reduce your monthly electricity bills and long-term costs.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔍 Data Insights</h3>
+                    <p>We provide detailed analysis and visualizations of appliance energy consumption data across Australia.</p>
+                </div>
             </div>
-            <div id="data-output"></div>
+        </section>
+
+        <section class="content">
+            <h2>Quick Facts</h2>
+            <ul>
+                <li>Televisions account for approximately 3-5% of household electricity consumption</li>
+                <li>Modern LED/LCD TVs are 20-30% more efficient than older plasma models</li>
+                <li>OLED technology offers superior picture quality with competitive power consumption</li>
+                <li>Screen size significantly impacts power consumption - larger screens use more energy</li>
+                <li>Energy Star certified appliances help reduce your carbon footprint</li>
+            </ul>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 COS30045 Data Visualisation. Exercise 0.2.</p>
+        <p>&copy; 2024 COS30045 Data Visualisation - Energy Australia. Exercise 0.2.</p>
+        <p>Created by: Ganesha. <span class="genai-note">This project includes AI-generated code assistance for web development and content optimization.</span></p>
     </footer>
 
-    <!-- Load custom scripts at the end of the body to ensure the DOM is loaded -->
+    <script src="js/navigation.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
