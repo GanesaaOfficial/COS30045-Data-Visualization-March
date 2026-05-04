@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Energy Consumption – Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="page">
+
+    <div class="page-hero">
+      <div class="badge">Data Story</div>
+      <h2>How Much Power Does Your TV Really Use?</h2>
+      <p>Every time you switch on your television, you draw energy from the grid. This data story explores over <strong style="color:#fff">170 television models</strong> available in Australia — analysing screen technology, screen size, brand variety, power consumption, and energy star ratings to help you make smarter, greener choices.</p>
+    </div>
+
+    <!-- Key stats filled by JS -->
+    <div class="stat-grid">
+      <div class="stat-card" id="stat-models"></div>
+      <div class="stat-card" id="stat-brands"></div>
+      <div class="stat-card" id="stat-techs"></div>
+      <div class="stat-card" id="stat-range"></div>
+    </div>
+
+    <h3 style="font-size:1.1rem;color:#1a2940;margin-bottom:1rem;">Explore the Story</h3>
+    <div class="nav-cards">
+      <a class="nav-card" href="technology.html">
+        <div class="nc-icon">📊</div>
+        <h4>Technology &amp; Screen Sizes</h4>
+        <p>Which screen tech dominates? What sizes are most common?</p>
+      </a>
+      <a class="nav-card" href="brands.html">
+        <div class="nc-icon">🏷️</div>
+        <h4>Brand Market Overview</h4>
+        <p>Which brands offer the most models in Australia?</p>
+      </a>
+      <a class="nav-card" href="power.html">
+        <div class="nc-icon">⚡</div>
+        <h4>Power Consumption Analysis</h4>
+        <p>Which tech uses the least power? Does screen size matter?</p>
+      </a>
+      <a class="nav-card" href="ratings.html">
+        <div class="nc-icon">⭐</div>
+        <h4>Star Ratings vs Screen Size</h4>
+        <p>Do bigger TVs always get lower energy ratings?</p>
+      </a>
+      <a class="nav-card" href="conclusion.html">
+        <div class="nc-icon">✅</div>
+        <h4>Key Takeaways</h4>
+        <p>What does this all mean for consumers?</p>
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2024 COS30045 Data Visualisation &mdash; Exercise 3 &mdash; TV Energy Consumption Data Story</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script>
+    const brands = [...new Set(TV_DATA.map(d => d.Brand))];
+    const sizes  = TV_DATA.map(d => d.Screen_Size);
+    document.getElementById("stat-models").innerHTML  = `<div class="num">${TV_DATA.length}</div><div class="lbl">TV Models</div>`;
+    document.getElementById("stat-brands").innerHTML  = `<div class="num">${brands.length}</div><div class="lbl">Brands</div>`;
+    document.getElementById("stat-techs").innerHTML   = `<div class="num">3</div><div class="lbl">Screen Technologies</div>`;
+    document.getElementById("stat-range").innerHTML   = `<div class="num">${Math.min(...sizes)}"–${Math.max(...sizes)}"</div><div class="lbl">Size Range</div>`;
+  </script>
+</body>
+</html>

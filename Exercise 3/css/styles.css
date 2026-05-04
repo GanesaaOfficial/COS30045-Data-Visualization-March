@@ -1,0 +1,307 @@
+:root {
+  --primary: #1a2940;
+  --accent:  #00b894;
+  --accent2: #0984e3;
+  --text:    #2d3436;
+  --muted:   #636e72;
+  --bg:      #f0f4f8;
+  --white:   #ffffff;
+  --shadow:  0 4px 20px rgba(0,0,0,0.08);
+  --radius:  12px;
+  --lcd-led: #00b894;
+  --oled:    #a29bfe;
+  --lcd:     #fdcb6e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+header {
+  background: linear-gradient(135deg, #1a2940 0%, #2d3a52 100%);
+  color: #fff;
+  padding: 1.2rem 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.header-brand .icon { font-size: 2rem; }
+
+.header-brand h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.header-brand p {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 1px;
+}
+
+/* ── Nav ──────────────────────────────────────────────── */
+nav {
+  background: #111e2e;
+  border-bottom: 2px solid var(--accent);
+}
+
+nav ul {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+nav ul li a {
+  display: block;
+  padding: 0.8rem 1.1rem;
+  color: #b2bec3;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #fff;
+  border-bottom-color: var(--accent);
+}
+
+/* ── Page wrapper ─────────────────────────────────────── */
+.page {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 0 2rem 4rem;
+}
+
+/* ── Page hero banner ─────────────────────────────────── */
+.page-hero {
+  background: linear-gradient(135deg, #1a2940 0%, #2d3a52 100%);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  color: #fff;
+  margin-bottom: 2.5rem;
+}
+
+.page-hero .badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 0.28rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+}
+
+.page-hero h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.page-hero p {
+  color: #b2bec3;
+  font-size: 1rem;
+  max-width: 760px;
+}
+
+/* ── Stat cards (home page) ───────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 4px solid var(--accent);
+}
+
+.stat-card .num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.stat-card .lbl {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* ── Chart blocks ─────────────────────────────────────── */
+.chart-block {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.chart-block h3 {
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-bottom: 0.6rem;
+}
+
+.insight-box {
+  background: #eef9f5;
+  border-left: 4px solid var(--accent);
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.4rem;
+  font-size: 0.96rem;
+  color: var(--text);
+}
+
+.chart-wrap {
+  overflow-x: auto;
+}
+
+.chart-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.8rem;
+}
+
+/* ── Takeaways grid (conclusion page) ────────────────── */
+.takeaway-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  margin-top: 1.8rem;
+}
+
+.takeaway-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  border-top: 4px solid var(--accent2);
+}
+
+.takeaway-card .t-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+
+.takeaway-card h4 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.takeaway-card p { font-size: 0.9rem; color: var(--muted); }
+
+/* ── Home nav cards ───────────────────────────────────── */
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.nav-card {
+  display: block;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  text-decoration: none;
+  border-top: 4px solid var(--accent2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.nav-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+.nav-card .nc-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.nav-card h4 { color: var(--primary); font-size: 1rem; margin-bottom: 0.3rem; }
+.nav-card p  { color: var(--muted); font-size: 0.82rem; }
+
+/* ── Footer ───────────────────────────────────────────── */
+footer {
+  background: var(--primary);
+  color: #636e72;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.82rem;
+}
+
+/* ── D3 shared ────────────────────────────────────────── */
+.axis text { font-size: 12px; fill: var(--muted); font-family: 'Segoe UI', sans-serif; }
+.axis path, .axis line { stroke: #dfe6e9; }
+.grid line { stroke: #e9ecef; stroke-dasharray: 3,3; }
+.grid path { stroke: none; }
+
+.axis-label {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tooltip {
+  position: fixed;
+  background: #1a2940;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  pointer-events: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  line-height: 1.6;
+  z-index: 9999;
+  max-width: 240px;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.legend rect { rx: 4; }
+.legend text { font-size: 12px; fill: var(--text); font-family: 'Segoe UI', sans-serif; }
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page-hero h2 { font-size: 1.4rem; }
+  nav ul li a   { padding: 0.6rem 0.7rem; font-size: 0.8rem; }
+}

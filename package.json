@@ -1,0 +1,14 @@
+{
+  "name": "cos30045-data-visualization-website",
+  "version": "1.0.0",
+  "description": "Combined website for COS30045 Data Visualization Exercises",
+  "main": "index.js",
+  "scripts": {
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "build": "echo 'Build complete'",
+    "start": "python3 -m http.server 8000 --bind 127.0.0.1"
+  },
+  "keywords": ["data-visualization", "d3", "exercises"],
+  "author": "COS30045",
+  "license": "MIT"
+}

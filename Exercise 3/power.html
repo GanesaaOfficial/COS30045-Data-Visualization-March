@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Energy – Power Analysis</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="page">
+
+    <div class="page-hero">
+      <div class="badge">Question 4 &amp; 5</div>
+      <h2>Power Consumption — Technology &amp; Screen Size</h2>
+      <p>Which screen technology is most efficient? And how strongly does screen size drive power draw? These two charts reveal the key factors behind your electricity bill.</p>
+    </div>
+
+    <!-- Chart 4 -->
+    <div class="chart-block">
+      <h3>Chart 4 — Power Consumption by Screen Technology (Box Plot)</h3>
+      <div class="insight-box">
+        <strong>OLED</strong> panels have a lower median power draw than <strong>LCD (LED)</strong> at comparable screen sizes, despite being perceived as power-hungry. <strong>LCD</strong> (without LED backlight) shows the lowest values overall — but remember this technology is limited to small screens. <strong>LCD (LED)</strong> spans the widest power range because it covers everything from 24" budget screens to 86" flagship panels.
+      </div>
+      <div class="chart-wrap">
+        <div id="chart-boxplot"></div>
+      </div>
+      <p class="chart-note">A <em>box plot</em> is used rather than a simple average. Averages are skewed by outliers — a handful of massive 85" screens would make LCD (LED) look far worse than it is. The box shows the median and where most models fall (the interquartile range).</p>
+    </div>
+
+    <!-- Chart 5 -->
+    <div class="chart-block">
+      <h3>Chart 5 — Screen Size vs Power Consumption (Scatter Plot)</h3>
+      <div class="insight-box">
+        There is a <strong>strong positive correlation</strong> between screen size and power consumption — larger screens draw significantly more power. However, <strong>OLED models consistently sit below LCD (LED) models</strong> of the same size, confirming their superior efficiency per square inch. The relationship is roughly linear, meaning each extra inch of screen adds a predictable amount to the power draw.
+      </div>
+      <div class="chart-wrap">
+        <div id="chart-scatter"></div>
+      </div>
+      <p class="chart-note">A <em>scatter plot</em> is the definitive chart for exploring the relationship between two continuous variables. Each dot is one TV model, coloured by screen technology. Hover over any dot to see the full model details.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2024 COS30045 Data Visualisation &mdash; Exercise 3 &mdash; TV Energy Consumption Data Story</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/charts.js"></script>
+  <script>
+    drawBoxPlot(TV_DATA, "#chart-boxplot");
+    drawScatter(TV_DATA, "#chart-scatter");
+  </script>
+</body>
+</html>

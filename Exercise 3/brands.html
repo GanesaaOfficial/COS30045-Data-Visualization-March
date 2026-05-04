@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Energy – Brands</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="page">
+
+    <div class="page-hero">
+      <div class="badge">Question 3</div>
+      <h2>Which Brands Offer the Most Models?</h2>
+      <p>Australia's TV market is competitive and diverse. This chart shows which brands have the broadest product range — from global giants to budget newcomers.</p>
+    </div>
+
+    <!-- Chart 3 -->
+    <div class="chart-block">
+      <h3>Chart 3 — Top Brands by Number of Models</h3>
+      <div class="insight-box">
+        <strong>Samsung</strong> and <strong>LG</strong> lead the market by model count, covering every size tier from compact budget TVs to premium 86" flagship panels. <strong>Hisense</strong> and <strong>TCL</strong> have rapidly expanded their Australian ranges with competitive mid-range pricing. <strong>Sony</strong> and <strong>Panasonic</strong> focus on fewer but higher-quality models, targeting the premium segment. Budget brands like <strong>Kogan</strong> compete on price with a wide range of entry-level screens.
+      </div>
+      <div class="chart-wrap">
+        <div id="chart-brands"></div>
+      </div>
+      <p class="chart-note">A <em>horizontal</em> bar chart sorted in descending order is used here. When there are many brand labels, a horizontal layout keeps all names legible — a vertical chart would cause text overlap on the x-axis.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2024 COS30045 Data Visualisation &mdash; Exercise 3 &mdash; TV Energy Consumption Data Story</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/charts.js"></script>
+  <script>
+    drawBrandsBar(TV_DATA, "#chart-brands");
+  </script>
+</body>
+</html>

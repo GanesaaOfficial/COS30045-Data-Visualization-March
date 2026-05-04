@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Energy – Technology &amp; Screen Sizes</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="page">
+
+    <div class="page-hero">
+      <div class="badge">Question 1 &amp; 2</div>
+      <h2>Screen Technology &amp; Size Distribution</h2>
+      <p>What types of screen technology are sold in Australia — and which sizes are most common? These two charts explore the shape of the market.</p>
+    </div>
+
+    <!-- Chart 1 -->
+    <div class="chart-block">
+      <h3>Chart 1 — Screen Technology Distribution</h3>
+      <div class="insight-box">
+        <strong>LCD (LED)</strong> dominates the Australian TV market, making up the vast majority of models across all size ranges. <strong>OLED</strong> panels remain a smaller premium segment offering deeper blacks and higher contrast. Traditional <strong>LCD</strong> (without LED backlight) appears mostly in small, budget-oriented screens under 35".
+      </div>
+      <div class="chart-wrap">
+        <div id="chart-tech"></div>
+      </div>
+      <p class="chart-note">A vertical bar chart is used here because the human eye judges bar <em>length</em> more accurately than pie-slice angles — making this a clearer choice than a pie chart for comparing category frequencies.</p>
+    </div>
+
+    <!-- Chart 2 -->
+    <div class="chart-block">
+      <h3>Chart 2 — Screen Size Distribution</h3>
+      <div class="insight-box">
+        Screen sizes range from <strong>24" to 86"</strong>. The market clusters most strongly around <strong>43"–65"</strong> — the living-room sweet spot. Very large screens (75"+) are a growing segment, while screens under 32" are shrinking as small TVs are replaced by tablets and monitors.
+      </div>
+      <div class="chart-wrap">
+        <div id="chart-size"></div>
+      </div>
+      <p class="chart-note">A <em>histogram</em> is used because screen size is a continuous variable — binning into ranges (e.g. 40"–49") shows the distribution correctly. A standard bar chart would be inappropriate here.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2024 COS30045 Data Visualisation &mdash; Exercise 3 &mdash; TV Energy Consumption Data Story</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/charts.js"></script>
+  <script>
+    drawTechBar(TV_DATA, "#chart-tech");
+    drawSizeHistogram(TV_DATA, "#chart-size");
+  </script>
+</body>
+</html>

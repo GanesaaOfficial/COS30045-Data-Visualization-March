@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Energy – Star Ratings</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="page">
+
+    <div class="page-hero">
+      <div class="badge">Question 6</div>
+      <h2>Energy Star Ratings vs Screen Size</h2>
+      <p>Australia's Energy Rating label lets consumers compare efficiency at a glance. But do star ratings actually reflect screen size, or is the story more complex?</p>
+    </div>
+
+    <!-- Chart 6 -->
+    <div class="chart-block">
+      <h3>Chart 6 — Star Rating vs Screen Size (Grouped Box Plot)</h3>
+      <div class="insight-box">
+        <strong>Higher star ratings strongly correlate with smaller screen sizes.</strong> The 6-star models are almost exclusively compact screens under 35". As screen size grows, achieving a high star rating becomes harder because absolute power draw rises faster than panel efficiency improvements can compensate. A 3.5-star 85" TV may actually be more efficient <em>for its size</em> than a 4-star 55" TV — the star rating reflects absolute consumption, not efficiency per inch.
+      </div>
+      <div class="chart-wrap">
+        <div id="chart-starsize"></div>
+      </div>
+      <p class="chart-note">A <em>grouped box plot</em> (one box per star rating) is used because star ratings are discrete categories. A scatter plot would result in vertical columns of overlapping dots — the box plot clearly shows how the distribution of screen sizes shifts across efficiency tiers.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="conclusion.html" style="display:inline-block;background:#00b894;color:#fff;padding:0.85rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:1rem;">View Key Takeaways →</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2024 COS30045 Data Visualisation &mdash; Exercise 3 &mdash; TV Energy Consumption Data Story</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/charts.js"></script>
+  <script>
+    drawStarSize(TV_DATA, "#chart-starsize");
+  </script>
+</body>
+</html>
