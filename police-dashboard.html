@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Police Enforcement Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="police-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand"><a href="index.html">D3 Exercises Portfolio</a></div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Police Dashboard</a>
+        <a href="exercise4.html">Exercise 4</a>
+        <a href="exercise5.html">Exercise 5</a>
+        <a href="exercise6.html">Exercise 6</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container stack">
+    <header>
+      <h1 class="page-title">Police Enforcement — Fines & Charges Dashboard</h1>
+      <p class="page-subtitle">Interactive exploration of enforcement outcomes by jurisdiction, metric, age group and detection method.</p>
+    </header>
+
+    <section class="card">
+      <h2 class="section-title">Filters</h2>
+      <div class="filters">
+        <div class="field">
+          <label for="jurisdiction">Jurisdiction</label>
+          <select id="jurisdiction"></select>
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <select id="location"></select>
+        </div>
+        <div class="field">
+          <label for="metric">Metric</label>
+          <select id="metric"></select>
+        </div>
+        <div class="field">
+          <label for="ageGroup">Age group</label>
+          <select id="ageGroup"></select>
+        </div>
+        <div class="field">
+          <label for="method">Detection method</label>
+          <select id="method"></select>
+        </div>
+        <div class="field actions">
+          <label>&nbsp;</label>
+          <button id="reset" class="btn" type="button">Reset</button>
+        </div>
+      </div>
+      <p class="hint">Tip: these filters update all charts below in real time.</p>
+    </section>
+
+    <section class="grid kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Total fines</div>
+        <div class="kpi-value" id="kpi-fines">—</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Total charges</div>
+        <div class="kpi-value" id="kpi-charges">—</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Total arrests</div>
+        <div class="kpi-value" id="kpi-arrests">—</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 style="margin: 0;">Monthly fines trend</h3>
+          <span class="tag">Line Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 13px;">Tracks the volume of enforcement fines issued over each month.</p>
+        <div id="trend"></div>
+      </div>
+      <div class="chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 style="margin: 0;">Top metrics by fines</h3>
+          <span class="tag">Bar Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 13px;">Ranks the most common categories and reasons for issued fines.</p>
+        <div id="metrics"></div>
+      </div>
+      <div class="chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 style="margin: 0;">Fines share by jurisdiction</h3>
+          <span class="tag">Donut Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 13px;">Displays the proportional distribution of fines by geographical jurisdiction.</p>
+        <div id="jurisdictions"></div>
+      </div>
+      <div class="chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 style="margin: 0;">Fines by age group</h3>
+          <span class="tag">Bar Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 13px;">Highlights how enforcement actions are distributed across various age demographics.</p>
+        <div id="ages"></div>
+      </div>
+    </section>
+
+    <div id="tooltip" class="custom-tooltip"></div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Dataset: <code>data/police_enforcement_2024_fines.csv</code>. Navigate: <a href="index.html">Police Dashboard</a> · <a href="exercise4.html">Exercise 4</a> · <a href="exercise5.html">Exercise 5</a> · <a href="exercise6.html">Exercise 6</a></div>
+  </footer>
+
+  <script src="js/police-dashboard.js"></script>
+</body>
+</html>

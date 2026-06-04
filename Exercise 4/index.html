@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4: SVG Basics & D3 Bar Chart</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="ex4-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand"><a href="../index.html">D3 Exercises Portfolio</a></div>
+            <nav class="nav" aria-label="Primary">
+                <a href="../index.html">Home</a>
+                <a href="../Exercise 4/index.html" aria-current="page">Exercise 4</a>
+                <a href="../Exercise 5/index.html">Exercise 5</a>
+                <a href="../Exercise 6/index.html">Exercise 6</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="container stack">
+        <header>
+            <h1 class="page-title">Exercise 4 — SVG Basics &amp; Dynamic Bar Chart</h1>
+            <p class="page-subtitle">Static SVG coordinate practice + a data-driven D3 bar chart rendered from CSV.</p>
+        </header>
+
+        <section class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h2 class="section-title" style="margin: 0;">Exercise 4.1: SVG House &amp; Garden</h2>
+                <span class="tag">Static SVG</span>
+            </div>
+            <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">A coordinate mapping exercise comparing an initial AI-generated SVG with a manually refined version.</p>
+            
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <!-- Original AI SVG -->
+                <div>
+                    <h3 style="margin-top: 0; font-size: 15px;">1. Original AI-Generated SVG</h3>
+                    <svg class="house-svg" viewBox="0 0 600 400" role="img" aria-label="Original simple SVG house">
+                        <rect x="0" y="0" width="600" height="300" fill="#87CEEB" />
+                        <rect x="0" y="300" width="600" height="100" fill="#228B22" />
+                        <rect x="200" y="150" width="200" height="150" fill="#F5DEB3" />
+                        <polygon points="180,150 300,50 420,150" fill="#A52A2A" />
+                        <rect x="280" y="220" width="40" height="80" fill="#8B4513" />
+                        <rect x="220" y="170" width="35" height="35" fill="#ADD8E6" />
+                        <rect x="345" y="170" width="35" height="35" fill="#ADD8E6" />
+                    </svg>
+                    <details style="margin-top: 10px;">
+                        <summary style="cursor: pointer; color: #2563eb; font-weight: bold; font-size: 13px;">👁️ View AI SVG Code</summary>
+                        <pre class="code-block" style="font-size: 12px; margin-top: 8px;"><code>&lt;svg viewBox="0 0 600 400"&gt;
+    &lt;rect x="0" y="0" width="600" height="300" fill="#87CEEB" /&gt;
+    &lt;rect x="0" y="300" width="600" height="100" fill="#228B22" /&gt;
+    &lt;rect x="200" y="150" width="200" height="150" fill="#F5DEB3" /&gt;
+    &lt;polygon points="180,150 300,50 420,150" fill="#A52A2A" /&gt;
+    &lt;rect x="280" y="220" width="40" height="80" fill="#8B4513" /&gt;
+    &lt;rect x="220" y="170" width="35" height="35" fill="#ADD8E6" /&gt;
+    &lt;rect x="345" y="170" width="35" height="35" fill="#ADD8E6" /&gt;
+&lt;/svg&gt;</code></pre>
+                    </details>
+                </div>
+
+                <!-- Modified SVG -->
+                <div>
+                    <h3 style="margin-top: 0; font-size: 15px;">2. Manually Modified SVG</h3>
+                    <svg class="house-svg" viewBox="0 0 600 400" role="img" aria-label="A simple SVG house with roof, door and windows">
+                        <rect x="0" y="0" width="600" height="300" fill="#bae1ff" />
+                        <rect x="0" y="300" width="600" height="100" fill="#baffc9" />
+                        <path d="M 270 300 L 220 400 L 380 400 L 330 300 Z" fill="#d3d3d3" stroke="#aaaaaa" />
+                        <rect x="230" y="90" width="30" height="60" fill="#964b00" stroke="#5c2e00" />
+                        <rect x="200" y="150" width="200" height="150" fill="#ffdfba" stroke="#e0b88d" stroke-width="2" />
+                        <polygon points="200,150 300,70 400,150" fill="#ffb3ba" stroke="#d98890" stroke-width="2" />
+                        <rect x="280" y="220" width="40" height="80" fill="#bcd4e6" />
+                        <circle cx="310" cy="260" r="4" fill="#ffd700" />
+                        <g class="windows" fill="#ffffba" stroke="#d0d08a" stroke-width="2">
+                            <rect x="220" y="170" width="35" height="35" />
+                            <rect x="345" y="170" width="35" height="35" />
+                        </g>
+                        <text x="300" y="40" font-family="sans-serif" font-size="22" fill="#2c3e50" text-anchor="middle">Exercise 4.1 House</text>
+                    </svg>
+                    <details style="margin-top: 10px;">
+                        <summary style="cursor: pointer; color: #2563eb; font-weight: bold; font-size: 13px;">👁️ View Modified SVG Code</summary>
+                        <pre class="code-block" style="font-size: 12px; margin-top: 8px;"><code>&lt;svg viewBox="0 0 600 400"&gt;
+    &lt;rect x="0" y="0" width="600" height="300" fill="#bae1ff" /&gt;
+    &lt;rect x="0" y="300" width="600" height="100" fill="#baffc9" /&gt;
+    &lt;path d="M 270 300 L 220 400 L 380 400 L 330 300 Z" fill="#d3d3d3" stroke="#aaaaaa" /&gt;
+    &lt;rect x="230" y="90" width="30" height="60" fill="#964b00" stroke="#5c2e00" /&gt;
+    &lt;rect x="200" y="150" width="200" height="150" fill="#ffdfba" stroke="#e0b88d" stroke-width="2" /&gt;
+    &lt;polygon points="200,150 300,70 400,150" fill="#ffb3ba" stroke="#d98890" stroke-width="2" /&gt;
+    &lt;rect x="280" y="220" width="40" height="80" fill="#bcd4e6" /&gt;
+    &lt;circle cx="310" cy="260" r="4" fill="#ffd700" /&gt;
+    &lt;g class="windows" fill="#ffffba" stroke="#d0d08a" stroke-width="2"&gt;
+        &lt;rect x="220" y="170" width="35" height="35" /&gt;
+        &lt;rect x="345" y="170" width="35" height="35" /&gt;
+    &lt;/g&gt;
+&lt;/svg&gt;</code></pre>
+                    </details>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <h4 style="margin-top: 0; margin-bottom: 8px; color: #0f172a;">Manual Modifications Applied:</h4>
+                <ul class="insights-list" style="margin-bottom: 0; font-size: 13px;">
+                    <li><strong>Styling &amp; Colors:</strong> Swapped harsh default colors for a softer pastel palette and added stroke outlines.</li>
+                    <li><strong>New Elements:</strong> Manually added a chimney (<code>&lt;rect&gt;</code>), a driveway (<code>&lt;path&gt;</code>), and a doorknob (<code>&lt;circle&gt;</code>).</li>
+                    <li><strong>Grouping:</strong> Wrapped the windows in a <code>&lt;g&gt;</code> tag to apply fill and stroke styles uniformly.</li>
+                    <li><strong>Typography:</strong> Added a <code>&lt;text&gt;</code> element at the top to serve as a label.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h2 class="section-title" style="margin: 0;">Exercise 4.3 – 4.7: TV Brands Bar Chart</h2>
+                <span class="tag">Horizontal Bar Chart</span>
+            </div>
+            <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">A dynamic, CSV-driven chart showing the frequency distribution of TV brands.</p>
+            <div class="responsive-svg-container" aria-label="Bar chart container"></div>
+        </section>
+
+    <script>
+        // Exercise 4.3: Setup responsive SVG container
+        const container = d3.select(".responsive-svg-container");
+        // Clear container to solve any overlay/duplication from live-reloads
+        container.selectAll("*").remove(); 
+        
+        const svg = container.append("svg").attr("viewBox", "0 0 800 400");
+
+        // Exercise 4.4: Load and explicitly cast types from CSV file
+        d3.csv("data/tvBrandCount.csv", d => {
+            return {
+                brand: d.brand,
+                count: +d.count // Unary plus converts string data to number type
+            };
+        }).then(data => {
+            // Exercise 4.4 Step 3: Finding information about the data set
+            console.log("Data Array:", data);
+            console.log("Length:", data.length);
+            console.log("Max Count:", d3.max(data, d => d.count));
+            console.log("Min Count:", d3.min(data, d => d.count));
+            console.log("Extent (Min/Max):", d3.extent(data, d => d.count));
+
+            // Sort data descending to display clean hierarchy layout
+            data.sort((a, b) => b.count - a.count);
+
+            // Execute Chart Render
+            createBarChart(data);
+        }).catch(error => {
+            console.error("Data load failure! Verify file structure pathways: ", error);
+        });
+
+        function createBarChart(data) {
+            const margin = { top: 40, right: 30, bottom: 60, left: 100 };
+            const width = 800 - margin.left - margin.right;
+            const height = 400 - margin.top - margin.bottom;
+
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+            // Exercise 4.6: Mathematical Axis Scale Layout Maps
+            const xScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.count)])
+                .range([0, width]);
+
+            const yScale = d3.scaleBand()
+                .domain(data.map(d => d.brand))
+                .range([0, height])
+                .padding(0.2);
+
+            // Exercise 4.7: Adding labels (Replaces the rect loop from 4.5)
+            // Create a group that binds both the rects and texts together
+            const barAndLabel = g.selectAll("g.barAndLabel")
+                .data(data)
+                .join("g")
+                .attr("class", "barAndLabel")
+                .attr("transform", d => `translate(0, ${yScale(d.brand)})`);
+
+            // Exercise 4.5 / 4.7: Add back the rectangles
+            barAndLabel.append("rect")
+                .attr("class", d => `bar bar-${d.count}`)
+                .attr("width", d => xScale(d.count))
+                .attr("height", yScale.bandwidth());
+
+            // Exercise 4.7: Add the count text
+            barAndLabel.append("text")
+                .text(d => d.count)
+                .attr("x", d => xScale(d.count) + 10)
+                .attr("y", yScale.bandwidth() / 2)
+                .attr("dy", "0.35em")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "#374151");
+
+            // Build Axes visual components
+            g.append("g")
+                .attr("transform", `translate(0, ${height})`)
+                .call(d3.axisBottom(xScale));
+
+            g.append("g")
+                .call(d3.axisLeft(yScale));
+        }
+    </script>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">Built with SVG + D3.js. Pages: <a href="../index.html">Home</a> · <a href="../Exercise 4/index.html">Exercise 4</a> · <a href="../Exercise 5/index.html">Exercise 5</a> · <a href="../Exercise 6/index.html">Exercise 6</a></div>
+    </footer>
+</body>
+</html>

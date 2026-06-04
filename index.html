@@ -1,173 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COS30045 Data Visualization – Exercises</title>
-    <link rel="stylesheet" href="shared-styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D3 Exercises Portfolio — Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-    <header>
-        <div class="header-inner">
-            <div class="header-brand">
-                <div class="icon">📊</div>
-                <div>
-                    <h1>COS30045 Data Visualization</h1>
-                    <p>Interactive Data Exploration & Storytelling</p>
-                </div>
-            </div>
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand"><a href="index.html" aria-current="page">D3 Exercises Portfolio</a></div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="exercise4.html">Exercise 4</a>
+        <a href="exercise5.html">Exercise 5</a>
+        <a href="exercise6.html">Exercise 6</a>
+        <a href="police-dashboard.html">Police Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container stack">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1 class="page-title">Home — Exercises 4, 5 &amp; 6 + Police Dashboard</h1>
+          <p class="page-subtitle">A clean, navigable portfolio with consistent layout and fully working D3 pages (served via localhost so CSV files load correctly).</p>
+          <div class="chips" aria-label="Quick links">
+            <span class="chip">SVG</span>
+            <span class="chip">D3 v7</span>
+            <span class="chip">CSV-driven charts</span>
+            <span class="chip">Filters + tooltips</span>
+          </div>
         </div>
-    </header>
-
-    <main class="page">
-        <div class="hero">
-            <h2>Welcome to the Data Visualization Portfolio</h2>
-            <p>Explore two comprehensive data visualization projects showcasing different approaches to data storytelling and interactive visualization design.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="police-dashboard.html">Open Police Dashboard</a>
+          <a class="btn" href="#pages">Browse Exercises</a>
         </div>
+      </div>
+    </section>
 
-        <div class="exercises-grid">
-            <!-- Exercise 0.2 -->
-            <div class="exercise-card">
-                <div class="card-badge">Exercise 0.2</div>
-                <h3>Energy Data Dashboard</h3>
-                <p class="card-description">An introductory energy consumption data visualization project. Learn the fundamentals of HTML, CSS, and JavaScript integration with data visualization techniques.</p>
-                <div class="card-stats">
-                    <span>📊 Basic Dashboard</span>
-                    <span>⚡ Energy Focus</span>
-                    <span>🎨 Clean Design</span>
-                </div>
-                <a href="Exercise 0.2/index.html" class="btn btn-primary">Explore Exercise 0.2</a>
-            </div>
+    <section id="pages" class="card">
+      <h2 class="section-title">Pages</h2>
+      <div class="home-grid">
+        <a class="page-card" href="exercise4.html">
+          <div class="page-card-top">
+            <h3>Exercise 4</h3>
+            <span class="tag">SVG + Bar Chart</span>
+          </div>
+          <p>Static SVG house (coordinate practice) + CSV-driven D3 bar chart.</p>
+        </a>
 
-            <!-- Exercise 3 -->
-            <div class="exercise-card">
-                <div class="card-badge exercise-3">Exercise 3</div>
-                <h3>TV Energy Consumption Story</h3>
-                <p class="card-description">An advanced multi-page data narrative exploring 170+ Australian TV models. Features interactive D3.js charts, multiple perspectives, and data-driven insights.</p>
-                <div class="card-stats">
-                    <span>📈 Advanced Analytics</span>
-                    <span>📺 170+ Models</span>
-                    <span>🎯 5 Pages</span>
-                </div>
-                <a href="Exercise 3/index.html" class="btn btn-accent">Explore Exercise 3</a>
-            </div>
-        </div>
+        <a class="page-card" href="exercise5.html">
+          <div class="page-card-top">
+            <h3>Exercise 5</h3>
+            <span class="tag">Dashboard Grid</span>
+          </div>
+          <p>Four-chart dashboard: scatter, donut, bar and line chart in a responsive layout.</p>
+        </a>
 
-        <section class="info-section">
-            <h2>Project Overview</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h4>Exercise 0.2: Foundations</h4>
-                    <p>A starting point for data visualization. This exercise introduces the essential components:</p>
-                    <ul>
-                        <li>HTML page structure</li>
-                        <li>CSS styling and layout</li>
-                        <li>JavaScript interactivity</li>
-                        <li>Basic data handling</li>
-                    </ul>
-                </div>
+        <a class="page-card" href="exercise6.html">
+          <div class="page-card-top">
+            <h3>Exercise 6</h3>
+            <span class="tag">Filters + SVG Tooltip</span>
+          </div>
+          <p>Interactive filters and a colour-coded scatterplot with an SVG tooltip (screen size) and legend.</p>
+        </a>
 
-                <div class="info-card">
-                    <h4>Exercise 3: Advanced Story</h4>
-                    <p>A complete data storytelling project featuring:</p>
-                    <ul>
-                        <li>Multi-page narrative structure</li>
-                        <li>D3.js interactive charts</li>
-                        <li>Dynamic navigation</li>
-                        <li>Data-driven insights</li>
-                    </ul>
-                </div>
+        <a class="page-card" href="police-dashboard.html">
+          <div class="page-card-top">
+            <h3>Police Dashboard</h3>
+            <span class="tag">Linked Charts</span>
+          </div>
+          <p>Interactive analysis of enforcement outcomes (fines, charges, arrests) with global filters.</p>
+        </a>
+      </div>
+    </section>
 
-                <div class="info-card">
-                    <h4>Exercise 3 Pages</h4>
-                    <p>Navigate through multiple analytical perspectives:</p>
-                    <ul>
-                        <li><strong>Home:</strong> Overview & key statistics</li>
-                        <li><strong>Technology:</strong> Screen tech & sizes</li>
-                        <li><strong>Brands:</strong> Market overview</li>
-                        <li><strong>Power:</strong> Consumption analysis</li>
-                        <li><strong>Ratings:</strong> Energy star ratings</li>
-                        <li><strong>Conclusion:</strong> Key takeaways</li>
-                    </ul>
-                </div>
+    <section class="card">
+      <h2 class="section-title">Run on localhost (required for CSV)</h2>
+      <p class="hint" style="margin-top:0;">Open a terminal in this folder and run:</p>
+      <pre class="code-block"><code>python3 -m http.server 8000</code></pre>
+      <p class="hint">Then open <code>http://localhost:8000/</code> and use the navigation.</p>
+    </section>
+  </main>
 
-                <div class="info-card">
-                    <h4>Key Technologies</h4>
-                    <p>These projects demonstrate:</p>
-                    <ul>
-                        <li>Semantic HTML5</li>
-                        <li>Modern CSS design</li>
-                        <li>ES6 JavaScript</li>
-                        <li>D3.js (v7) visualization</li>
-                        <li>CSV data loading</li>
-                        <li>Responsive design</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <footer class="site-footer">
+    <div class="container">
+      Pages: <a href="index.html">Home</a> · <a href="exercise4.html">Exercise 4</a> · <a href="exercise5.html">Exercise 5</a> · <a href="exercise6.html">Exercise 6</a> · <a href="police-dashboard.html">Police Dashboard</a>
+    </div>
+  </footer>
 
-        <section class="file-structure">
-            <h2>Complete Project Structure</h2>
-            <div class="file-tree">
-                <div class="tree-item">📁 COS30045-Data-Visualization-March-main/</div>
-                <div class="tree-item indent-1">
-                    <span class="tree-file">📄 index.html</span> (this file - main hub)
-                </div>
-                <div class="tree-item indent-1">
-                    <span class="tree-file">📄 package.json</span> (npm configuration)
-                </div>
-                <div class="tree-item indent-1">
-                    <span class="tree-file">📄 shared-styles.css</span> (global styling)
-                </div>
-                
-                <div class="tree-item indent-1">📁 Exercise 0.2/</div>
-                <div class="tree-item indent-2">📄 index.html</div>
-                <div class="tree-item indent-2">📄 styles.css</div>
-                <div class="tree-item indent-2">📄 scripts.js</div>
-                <div class="tree-item indent-2">📁 css/ (additional styles)</div>
-                <div class="tree-item indent-2">📁 js/ (additional scripts)</div>
-                <div class="tree-item indent-2">📁 images/ (assets)</div>
-                <div class="tree-item indent-2">📁 data/ (CSV data)</div>
-
-                <div class="tree-item indent-1">📁 Exercise 3/</div>
-                <div class="tree-item indent-2">📄 index.html (home)</div>
-                <div class="tree-item indent-2">📄 brands.html</div>
-                <div class="tree-item indent-2">📄 conclusion.html</div>
-                <div class="tree-item indent-2">📄 power.html</div>
-                <div class="tree-item indent-2">📄 ratings.html</div>
-                <div class="tree-item indent-2">📄 technology.html</div>
-                <div class="tree-item indent-2">📁 css/</div>
-                <div class="tree-item indent-2">📁 js/ (data.js, nav.js, charts.js)</div>
-                <div class="tree-item indent-2">📁 images/ (assets)</div>
-                <div class="tree-item indent-2">📁 data/ (tv_energy.csv)</div>
-            </div>
-        </section>
-
-        <section class="getting-started">
-            <h2>Getting Started</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Start the Web Server</h4>
-                    <p>Run the development server:</p>
-                    <code>npm run dev</code>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Open in Browser</h4>
-                    <p>Navigate to <code>http://localhost:8000</code></p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Explore Both Exercises</h4>
-                    <p>Click on the cards below to visit either exercise. All assets and data are included.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 COS30045 Data Visualisation — All Exercises Portfolio</p>
-    </footer>
+  <script src="js/chart-modal.js"></script>
 </body>
 </html>

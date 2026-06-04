@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise 5 - Multi-Chart Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- D3.js library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="exercise-page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand"><a href="../index.html">D3 Exercises Portfolio</a></div>
+      <nav class="nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../Exercise 4/index.html">Exercise 4</a>
+        <a href="../Exercise 5/index.html" aria-current="page">Exercise 5</a>
+        <a href="../Exercise 6/index.html">Exercise 6</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container stack">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="page-title">Exercise 5: Multi-Chart Webpage</h1>
+        <p class="page-subtitle">A multi-chart dashboard populated via individual D3 JavaScript files reading from distinct CSV datasets. Each visualization is responsive and adapts to window sizes.</p>
+      </div>
+    </section>
+
+    <!-- Expanded CSS Grid layout to make the charts significantly bigger and visible -->
+    <section class="grid" style="grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 24px;">
+      <div class="card chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="margin: 0; font-size: 18px;">Energy vs Star Rating</h2>
+          <span class="tag">Scatter Plot</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">Illustrates the correlation between star ratings and energy consumption.</p>
+        <div id="scatter" class="responsive-svg-container"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="margin: 0; font-size: 18px;">Screen Technology Distribution</h2>
+          <span class="tag">Donut Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">Visualizes energy usage breakdown by TV screen technology.</p>
+        <div id="donut" class="responsive-svg-container"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="margin: 0; font-size: 18px;">55-inch TVs Energy by Tech</h2>
+          <span class="tag">Vertical Bar Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">Compares energy consumption specifically across 55-inch TV technologies.</p>
+        <div id="bar55" class="responsive-svg-container"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="margin: 0; font-size: 18px;">Spot Power Prices (1998 - 2024)</h2>
+          <span class="tag">Line Chart</span>
+        </div>
+        <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">Demonstrates the historical progression of average spot power prices over time.</p>
+        <div id="line" class="responsive-svg-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Link the Modal UI logic -->
+  <script src="js/chart-modal.js"></script>
+
+  <!-- Link our 4 distinct chart engines as required by Ex 5 -->
+  <script src="js/scatter.js"></script>
+  <script src="js/donut.js"></script>
+  <script src="js/bar55.js"></script>
+  <script src="js/line.js"></script>
+</body>
+</html>

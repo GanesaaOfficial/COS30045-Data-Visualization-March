@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6: Filters & Tooltips</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      .interactive-panel { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 10px 28px rgba(15,23,42,0.08); margin-bottom: 18px; }
+      .filter-container { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+      .charts-row { display: flex; flex-wrap: wrap; gap: 18px; }
+      .chart-box { flex: 1; min-width: 340px; background: white; padding: 20px; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 10px 28px rgba(15,23,42,0.08); position: relative; }
+      .dot { fill-opacity: 0.7; transition: r 0.1s; }
+      .dot:hover { fill-opacity: 1; stroke: #000; stroke-width: 2px; }
+    </style>
+</head>
+<body class="ex6-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand"><a href="../index.html">D3 Exercises Portfolio</a></div>
+            <nav class="nav" aria-label="Primary">
+                <a href="../index.html">Home</a>
+                <a href="../Exercise 4/index.html">Exercise 4</a>
+                <a href="../Exercise 5/index.html">Exercise 5</a>
+                <a href="../Exercise 6/index.html" aria-current="page">Exercise 6</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="container stack">
+        <header>
+            <h1 class="page-title">Exercise 6 — Advanced Interactivity</h1>
+            <p class="page-subtitle">Interactive filter buttons + tooltip hover details across two charts.</p>
+        </header>
+
+        <section class="interactive-panel">
+            <div class="filter-container">
+                <strong>Technology Filter:</strong>
+                <button class="btn active" onclick="filterEngine('all', this)">Show All</button>
+                <button class="btn" onclick="filterEngine('OLED', this)">OLED Models</button>
+                <button class="btn" onclick="filterEngine('LED', this)">LED Models</button>
+                <button class="btn" onclick="filterEngine('LCD', this)">LCD Models</button>
+            </div>
+        </section>
+
+        <section class="charts-row">
+            <div class="chart-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h3 style="margin: 0;">6.1: Energy Consumption Frequencies</h3>
+                    <span class="tag">Histogram</span>
+                </div>
+                <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">Displays the frequency distribution of TV models across varying energy consumption thresholds.</p>
+                <div id="histogram-target"></div>
+            </div>
+            <div class="chart-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h3 style="margin: 0;">6.2: Energy vs Star Rating</h3>
+                    <span class="tag">Scatter Plot + Tooltips</span>
+                </div>
+                <p style="margin-top: 0; margin-bottom: 16px; color: #6b7280; font-size: 14px;">Analyzes the relationship between star rating and energy usage. Hover over points for exact specifications.</p>
+                <div id="scatter-target"></div>
+                <div id="tooltip-node" class="custom-tooltip"></div>
+            </div>
+        </section>
+
+    <script>
+        let fullDataset = [];
+        const w = 500, h = 350, margin = { top: 30, right: 20, bottom: 40, left: 50 };
+        const cw = w - margin.left - margin.right;
+        const ch = h - margin.top - margin.bottom;
+
+        // Color Scale for execution tracking
+        const techColors = { "OLED": "#e15759", "LED": "#f28e2b", "LCD": "#4e79a7" };
+
+        d3.csv("data/Ex6_TVdata.csv", d => ({
+            brand: d.brand,
+            screenTech: d.screenTech,
+            screenSize: +d.screenSize,
+            energy: +d.energyConsumption,
+            rating: +d.starRating
+        })).then(data => {
+            fullDataset = data;
+            renderHistogram(fullDataset);
+            renderScatter(fullDataset);
+        });
+
+        // ==========================================
+        // EXERCISE 6.1: HISTOGRAM DRAW ENGINE
+        // ==========================================
+        function renderHistogram(data) {
+            d3.select("#histogram-target").html(""); // Clear old instances safely
+            const svg = d3.select("#histogram-target").append("svg").attr("viewBox", `0 0 ${w} ${h}`)
+                .append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+            // Fix: Dynamically scale X axis to the FULL dataset to prevent clipping and jumping during filters
+            const xs = d3.scaleLinear().domain(d3.extent(fullDataset, d => d.energy)).nice().range([0, cw]);
+
+            // Fix: Use 40 thresholds (bins) for a mathematically correct histogram distribution (5 is too few)
+            const histogram = d3.bin().value(d => d.energy).domain(xs.domain()).thresholds(xs.ticks(40));
+            const bins = histogram(data);
+
+            // Fix: Safeguard Y-axis if filtered data is empty, and format cleanly
+            const maxY = d3.max(bins, d => d.length) || 10;
+            const ys = d3.scaleLinear().domain([0, maxY]).nice().range([ch, 0]);
+
+            // Add subtle gridlines for clarity
+            svg.append("g").attr("class", "gridlines")
+                .call(d3.axisLeft(ys).tickSize(-cw).tickFormat("").ticks(Math.min(5, maxY)));
+
+            // Drawing the data-bound paths with smooth transition logic rulesets
+            svg.selectAll("rect").data(bins).join("rect")
+                .attr("class", "bar")
+                .attr("x", d => xs(d.x0) + 1)
+                .attr("y", d => ys(d.length))
+                .attr("width", d => Math.max(0, xs(d.x1) - xs(d.x0) - 1))
+                .attr("height", d => ch - ys(d.length))
+                .attr("stroke", "#ffffff").attr("stroke-width", 1); // Border separates bars
+
+            svg.append("g").attr("transform", `translate(0,${ch})`).call(d3.axisBottom(xs));
+            svg.append("g").call(d3.axisLeft(ys).ticks(Math.min(5, maxY)).tickFormat(d3.format("d")));
+            
+            // Add missing axis labels
+            svg.append("text").attr("x", cw / 2).attr("y", ch + 35).attr("text-anchor", "middle").style("font-size", "12px").style("fill", "#6b7280").text("Energy Consumption (kWh)");
+            svg.append("text").attr("transform", "rotate(-90)").attr("x", -ch / 2).attr("y", -35).attr("text-anchor", "middle").style("font-size", "12px").style("fill", "#6b7280").text("Number of TVs");
+        }
+
+        // ==========================================
+        // EXERCISE 6.2: SCATTER PLOT & TOOLTIP ENGINE
+        // ==========================================
+        function renderScatter(data) {
+            d3.select("#scatter-target svg").remove();
+            const svg = d3.select("#scatter-target").append("svg").attr("viewBox", `0 0 ${w} ${h}`)
+                .append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+            // Fix: Dynamically scale axes to FULL dataset to prevent jumping and data clipping
+            const rExt = d3.extent(fullDataset, d => d.rating);
+            const xs = d3.scaleLinear().domain([Math.max(0, rExt[0] - 0.5), rExt[1] + 0.5]).range([0, cw]);
+            const ys = d3.scaleLinear().domain(d3.extent(fullDataset, d => d.energy)).nice().range([ch, 0]);
+
+            // Add subtle gridlines for both axes to map points clearly
+            svg.append("g").attr("class", "gridlines").attr("transform", `translate(0,${ch})`)
+                .call(d3.axisBottom(xs).tickSize(-ch).tickFormat("").ticks(5));
+            svg.append("g").attr("class", "gridlines")
+                .call(d3.axisLeft(ys).tickSize(-cw).tickFormat("").ticks(5));
+
+            svg.append("g").attr("transform", `translate(0,${ch})`).call(d3.axisBottom(xs).ticks(5));
+            svg.append("g").call(d3.axisLeft(ys));
+
+            // Add missing axis labels
+            svg.append("text").attr("x", cw / 2).attr("y", ch + 35).attr("text-anchor", "middle").style("font-size", "12px").style("fill", "#6b7280").text("Star Rating");
+            svg.append("text").attr("transform", "rotate(-90)").attr("x", -ch / 2).attr("y", -35).attr("text-anchor", "middle").style("font-size", "12px").style("fill", "#6b7280").text("Energy Consumption (kWh)");
+
+            // Add a color legend for the Screen Technology
+            const legend = svg.append("g").attr("transform", `translate(${cw - 80}, 10)`);
+            Object.entries(techColors).forEach(([tech, color], i) => {
+                const lg = legend.append("g").attr("transform", `translate(0, ${i * 20})`);
+                lg.append("circle").attr("r", 5).attr("fill", color);
+                lg.append("text").attr("x", 10).attr("y", 4).style("font-size", "11px").style("fill", "#374151").text(tech);
+            });
+
+            const tooltip = d3.select("#tooltip-node");
+
+            // Append data elements circles mapping
+            svg.selectAll("circle").data(data).join("circle")
+                .attr("class", "dot")
+                .attr("cx", d => xs(d.rating))
+                .attr("cy", d => ys(d.energy))
+                .attr("r", 8)
+                .attr("fill", d => techColors[d.screenTech] || "#777")
+                // Core Interactivity Handlers requested inside criteria
+                .on("mouseover", function(event, d) {
+                    tooltip.style("opacity", 1)
+                           .html(`<strong>Brand:</strong> ${d.brand}<br><strong>Dimensions:</strong> ${d.screenSize}\" Diagonal`);
+                    d3.select(this).attr("r", 12);
+                })
+                .on("mousemove", function(event) {
+                    // Precision alignment bounding checks relative to target box node mapping
+                    const containerCoords = d3.pointer(event, d3.select("#scatter-target").node());
+                    tooltip.style("left", (containerCoords[0] + 20) + "px")
+                           .style("top", (containerCoords[1] - 20) + "px");
+                })
+                .on("mouseleave", function() {
+                    tooltip.style("opacity", 0);
+                    d3.select(this).attr("r", 8);
+                });
+        }
+
+        // Global Orchestration Filtering Function Engine
+        function filterEngine(techType, element) {
+            // Re-assign active styling button parameters cleanly
+            d3.selectAll(".btn").classed("active", false);
+            d3.select(element).classed("active", true);
+
+            // Compute active filtered dataset matching standard conditions array
+            const filtered = (techType === 'all') ? fullDataset : fullDataset.filter(item => item.screenTech === techType);
+
+            // Redraw charts natively via analytical state loops
+            renderHistogram(filtered);
+            renderScatter(filtered);
+        }
+    </script>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">Tip: hover points on the scatter plot to see the tooltip. Navigate: <a href="../index.html">Home</a> · <a href="../Exercise 4/index.html">Exercise 4</a> · <a href="../Exercise 5/index.html">Exercise 5</a> · <a href="../Exercise 6/index.html">Exercise 6</a></div>
+    </footer>
+</body>
+</html>
